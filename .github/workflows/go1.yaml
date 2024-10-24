@@ -26,15 +26,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install nuitka
         pip install numpy nibabel # 安裝你的 Python 應用所需的依賴
-        # 安裝 MinGW 編譯器
-        choco install mingw
 
     - name: Compile with Nuitka
       run: |
-        nuitka --standalone --onefile --mingw64 --output-dir=dist example.py
+        # 允許自動下載正確版本的 GCC 編譯器
+        echo "yes" | nuitka --standalone --onefile --mingw64 --output-dir=dist example.py
+        dir dist
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: built-executable
-        path: dist/
+        path: dist/*.exe
