@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: exe
-          path: build/
+          path: build/example.exe
           include-hidden-files: true
